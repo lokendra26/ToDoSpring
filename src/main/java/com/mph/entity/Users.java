@@ -1,18 +1,34 @@
 package com.mph.entity;
 
-public class User {
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
+public class Users {
+
+	@Id
 	private String emailId;
+	@Column
 	private String userName;
+	@Column
 	private String password;
+	@Column
 	private int phoneNumber;
 	
-	public User() {
+	//@OneToMany(mappedBy="user",cascade = CascadeType.ALL)
+	//private List<Task> task;
+	
+	public Users() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public User(String emailId, String userName, String password, int phoneNumber) {
+	public Users(String emailId, String userName, String password, int phoneNumber) {
 		super();
 		this.emailId = emailId;
 		this.userName = userName;

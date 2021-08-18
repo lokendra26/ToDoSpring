@@ -2,16 +2,16 @@ package com.mph.service;
 
 import java.util.List;
 
-import com.mph.entity.User;
+import com.mph.entity.Users;
 
 public interface UserService {
 
-	public void createUser(User user);
+	public void createUser(Users user);
 
-	public User getUser(User user);
+	public Users getUser(Users user);
 
-	public List<User> updateUser(User User);
+	public List<Users> updateUser(Users User);
 
-	public User getUserByEmailId(String emailId);
+	public Users getUserByEmailId(String emailId);
 
 }

@@ -1,24 +1,46 @@
 package com.mph.entity;
 
-public class Task {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
+public class Task extends TaskDetails{
 	
+	@Id
+	@GeneratedValue
 	private int taskId;
+	@Column
 	private String taskName;
+	@Column
 	private String taskDate;
+	@Column
 	private String taskTime;
+	@Column
 	private int taskPriority;
+	
+	@ManyToOne
+	@JoinColumn(name = "emailId",referencedColumnName = "emailId")
+	private Users user;
+	
 	public Task() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Task(int taskId, String taskName, String taskDate, String taskTime, int taskPriority) {
+	
+	public Task(int taskId, String taskName, String taskDate, String taskTime, int taskPriority, Users user) {
 		super();
 		this.taskId = taskId;
 		this.taskName = taskName;
 		this.taskDate = taskDate;
 		this.taskTime = taskTime;
 		this.taskPriority = taskPriority;
+		this.user = user;
 	}
+
 	public int getTaskId() {
 		return taskId;
 	}
@@ -49,11 +71,22 @@ public class Task {
 	public void setTaskPriority(int taskPriority) {
 		this.taskPriority = taskPriority;
 	}
+	
+	public Users getUser() {
+		return user;
+	}
+
+	public void setUser(Users user) {
+		this.user = user;
+	}
+
 	@Override
 	public String toString() {
 		return "Task [taskId=" + taskId + ", taskName=" + taskName + ", taskDate=" + taskDate + ", taskTime=" + taskTime
-				+ ", taskPriority=" + taskPriority + "]";
+				+ ", taskPriority=" + taskPriority + ", user=" + user + "]";
 	}
+
+	
 	
 	
 	

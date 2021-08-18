@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import com.mph.entity.User;
+import com.mph.entity.Users;
 import com.mph.service.UserService;
 
 @RestController
@@ -29,27 +29,27 @@ public class UserRestController {
 	//private static final Logger logger = Logger.getLogger(UserRestController.class);
 
 	@PostMapping("/createUser")
-	public User createUser(@RequestBody User user) {
+	public Users createUser(@RequestBody Users user) {
 		userService.createUser(user);
 		return user;
 	}
 	
 	@PutMapping("/updateUser")
-	public ResponseEntity<List<User>> updateUser(@RequestBody User user) {
+	public ResponseEntity<List<Users>> updateUser(@RequestBody Users user) {
 		
-		List<User> userList = userService.updateUser(user);
+		List<Users> userList = userService.updateUser(user);
 		System.out.println("From Rest update emp : " + userList);
 		
 		if(userList.isEmpty()) {
 			
-			return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<List<Users>>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<List<User>>(userList,HttpStatus.OK);		
+		return new ResponseEntity<List<Users>>(userList,HttpStatus.OK);		
 		
 	}
 	
 	@GetMapping("/getUser/{emailId}")
-	public ResponseEntity<User> getAUser(@PathVariable("emailId") String emailId) {
+	public ResponseEntity<Users> getAUser(@PathVariable("emailId") String emailId) {
 		
 		//logger.info("GETTING REQUEST FROM USER TO LOGIN");
 		//System.out.println(logger.getName()+ "  " + logger.getLevel());
@@ -61,12 +61,12 @@ public class UserRestController {
 		
 		//System.out.println("Log4 j configuration is SUCCESSFUL");
 		
-		User user =userService.getUserByEmailId(emailId);
+		Users user =userService.getUserByEmailId(emailId);
 		System.out.println("From Rest getEmp : " + user);
 		if(user == null) {
-			return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<Users>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<User>(user,HttpStatus.OK);		
+		return new ResponseEntity<Users>(user,HttpStatus.OK);		
 		
 		
 	}
