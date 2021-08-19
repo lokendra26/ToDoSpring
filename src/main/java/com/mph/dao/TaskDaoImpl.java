@@ -30,22 +30,22 @@ public class TaskDaoImpl implements TaskDao {
 
 	@Override
 	public List<Task> getAllTasks() {
-		Query query = getSession().createQuery("from Employee emp");
+		Query query = getSession().createQuery("from Task task");
 		List<Task> tasklist = query.list();
 		System.out.println(tasklist);
 		return tasklist; 
 		
 	}
 
-	@Override
+	/*@Override
 	public Task getTask(Task task) {
 		Criteria c = getSession().createCriteria(Task.class);
 		//c.add(Restrictions.eq("email", task.getEmail()));
 		Task em = (Task)c.uniqueResult();
-		System.out.println("Employee Retrieved : " + em);
+		System.out.println("Task Retrieved : " + em);
 		return em;
 		
-	}
+	}*/
 
 	@Override
 	public List<Task> updateTask(Task task) {
@@ -53,9 +53,16 @@ public class TaskDaoImpl implements TaskDao {
 	}
 
 	@Override
-	public List<Task> deleteTask(int taskId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Task> deleteTask(int taskNo) {
+		Query query = getSession().createQuery("delete from Employee emp where taskId=:taskNo");
+		query.setParameter("taskNo", taskNo);
+		int noofrows = query.executeUpdate();
+		if(noofrows >0)
+		{
+			System.out.println("Deleted " + noofrows + " rows");
+		}
+		
+		return getAllTasks();
 	}
 
 	@Override
