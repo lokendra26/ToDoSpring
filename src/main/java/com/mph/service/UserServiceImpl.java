@@ -2,28 +2,47 @@ package com.mph.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.mph.dao.UserDao;
 import com.mph.entity.Users;
 
+@Service
+@Transactional
 public class UserServiceImpl implements UserService{
 
+	@Autowired
+	UserDao userDao;
+	
+	public UserServiceImpl() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
 	public void createUser(Users user) {
-		// TODO Auto-generated method stub
+		userDao.createUser(user);
 		
 	}
 
+	@Override
 	public Users getUser(Users user) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return userDao.getUser(user);
 	}
 
-	public List<Users> updateUser(Users User) {
-		// TODO Auto-generated method stub
-		return null;
+	@Override
+	public Users updateUser(Users user) {
+		
+		return userDao.updateUser(user);
 	}
 
+	@Override
 	public Users getUserByEmailId(String emailId) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return userDao.getUserByEmailId(emailId);
 	}
 
 }

@@ -10,7 +10,7 @@ public interface TaskService {
 
 	public List<Task> getAllTasks();
 
-	public Task getTask(Task task);
+	//public Task getTask(Task task);
 
 	public List<Task> updateTask(Task task);
 

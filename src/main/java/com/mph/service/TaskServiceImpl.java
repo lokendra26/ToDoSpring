@@ -2,38 +2,60 @@ package com.mph.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.mph.dao.TaskDao;
 import com.mph.entity.Task;
 
+@Service
+@Transactional
 public class TaskServiceImpl implements TaskService{
 
+	@Autowired
+	TaskDao taskDao;
+	
+	
+	public TaskServiceImpl() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
 	public void createTask(Task task) {
-		// TODO Auto-generated method stub
+		taskDao.createTask(task);
 		
 	}
 
+	@Override
 	public List<Task> getAllTasks() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return taskDao.getAllTasks();
 	}
 
+	/*@Override
 	public Task getTask(Task task) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		
+		return taskDao.getTask(task);
+	}*/
 
+	@Override
 	public List<Task> updateTask(Task task) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return taskDao.updateTask(task);
 	}
 
+	@Override
 	public List<Task> deleteTask(int taskId) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return taskDao.deleteTask(taskId);
 	}
 
+	@Override
 	public Task getTaskById(int taskId) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return taskDao.getTaskById(taskId);
 	}
 
 }

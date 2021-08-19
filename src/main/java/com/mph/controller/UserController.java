@@ -56,9 +56,9 @@ public class UserController {
 	@RequestMapping(value="/update",method = RequestMethod.GET)
 	public ModelAndView update(@ModelAttribute Users user)
 	{
-		List<Users> userlist = userService.updateUser(user);
+		Users usr = userService.updateUser(user);
 		ModelAndView mv=new ModelAndView("home");
-		return mv.addObject("elist",userlist);
+		return mv.addObject("elist",usr);
 	}
 		
 }

@@ -35,16 +35,16 @@ public class UserRestController {
 	}
 	
 	@PutMapping("/updateUser")
-	public ResponseEntity<List<Users>> updateUser(@RequestBody Users user) {
+	public ResponseEntity<Users> updateUser(@RequestBody Users user) {
 		
-		List<Users> userList = userService.updateUser(user);
-		System.out.println("From Rest update emp : " + userList);
+		Users usr = userService.updateUser(user);
+		System.out.println("From Rest update emp : " + usr);
 		
-		if(userList.isEmpty()) {
+		if(usr==null) {
 			
-			return new ResponseEntity<List<Users>>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<Users>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<List<Users>>(userList,HttpStatus.OK);		
+		return new ResponseEntity<Users>(usr,HttpStatus.OK);		
 		
 	}
 	
