@@ -37,7 +37,7 @@ public class TaskDaoImpl implements TaskDao {
 		
 	}
 
-	@Override
+	/*@Override
 	public Task getTask(Task task) {
 		Criteria c = getSession().createCriteria(Task.class);
 		//c.add(Restrictions.eq("email", task.getEmail()));
@@ -45,7 +45,7 @@ public class TaskDaoImpl implements TaskDao {
 		System.out.println("Task Retrieved : " + em);
 		return em;
 		
-	}
+	}*/
 
 	@Override
 	public List<Task> updateTask(Task task) {
@@ -53,9 +53,9 @@ public class TaskDaoImpl implements TaskDao {
 	}
 
 	@Override
-	public List<Task> deleteTask(int taskId) {
-		Query query = getSession().createQuery("delete from Employee emp where taskno=:taskId");
-		query.setParameter("taskId", taskId);
+	public List<Task> deleteTask(int taskNo) {
+		Query query = getSession().createQuery("delete from Employee emp where taskId=:taskNo");
+		query.setParameter("taskNo", taskNo);
 		int noofrows = query.executeUpdate();
 		if(noofrows >0)
 		{

@@ -60,6 +60,5 @@ public class UserController {
 		ModelAndView mv=new ModelAndView("home");
 		return mv.addObject("elist",userlist);
 	}
-	
-	
+		
 }
