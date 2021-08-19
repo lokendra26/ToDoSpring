@@ -30,7 +30,7 @@ public class TaskDaoImpl implements TaskDao {
 
 	@Override
 	public List<Task> getAllTasks() {
-		Query query = getSession().createQuery("from Employee emp");
+		Query query = getSession().createQuery("from Task task");
 		List<Task> tasklist = query.list();
 		System.out.println(tasklist);
 		return tasklist; 
