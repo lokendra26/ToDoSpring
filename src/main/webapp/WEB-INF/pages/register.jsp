@@ -17,7 +17,7 @@
 	<a href="loginpage">Login here</a>
 	<fieldset>
 	
-	<form action="addemployee" method="post">
+	<form action="adduser" method="post">
 		<div class="form-row">
 
 			<div class="form-group">
@@ -36,6 +36,11 @@
 				<label for="lblpwd">Password </label> 
 				<input type="password" class="form-control" id="lblpwd" name="txtpwd"
 					placeholder="Enter password">
+			</div>
+			<div class="form-group">
+				<label for="lblphn">Phone Number </label> 
+				<input type="number" class="form-control" id="lblphn" name="txtphn"
+					placeholder="Enter phone number">
 			</div>
 		</div>
 		<button type="submit" class="btn btn-primary">Sign-up</button>

@@ -42,7 +42,7 @@ public class TaskDaoImpl implements TaskDao {
 		Criteria c = getSession().createCriteria(Task.class);
 		//c.add(Restrictions.eq("email", task.getEmail()));
 		Task em = (Task)c.uniqueResult();
-		System.out.println("Employee Retrieved : " + em);
+		System.out.println("Task Retrieved : " + em);
 		return em;
 		
 	}
@@ -54,8 +54,15 @@ public class TaskDaoImpl implements TaskDao {
 
 	@Override
 	public List<Task> deleteTask(int taskId) {
-		// TODO Auto-generated method stub
-		return null;
+		Query query = getSession().createQuery("delete from Employee emp where taskno=:taskId");
+		query.setParameter("taskId", taskId);
+		int noofrows = query.executeUpdate();
+		if(noofrows >0)
+		{
+			System.out.println("Deleted " + noofrows + " rows");
+		}
+		
+		return getAllTasks();
 	}
 
 	@Override
