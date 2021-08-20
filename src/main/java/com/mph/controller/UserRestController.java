@@ -77,7 +77,7 @@ public class UserRestController {
 		return new ResponseEntity<Users>(usr,HttpStatus.OK);
 	}
 	
-	@GetMapping("/getUser/{emailId}")
+	@GetMapping("/getUser/{emailId}/")
 	public ResponseEntity<Users> getAUser(@PathVariable("emailId") String emailId) {
 		
 		//logger.info("GETTING REQUEST FROM USER TO LOGIN");
@@ -91,7 +91,7 @@ public class UserRestController {
 		//System.out.println("Log4 j configuration is SUCCESSFUL");
 		System.out.println("emailId: "+emailId );
 		Users user =userService.getUserByEmailId(emailId);
-		System.out.println("From Rest getEmp : " + user);
+		System.out.println("From Rest getUser : " + user);
 		if(user == null) {
 			return new ResponseEntity<Users>(HttpStatus.NO_CONTENT);
 		}
