@@ -10,9 +10,12 @@ public interface UserDao {
 
 	public Users getUser(Users user);
 
+	//public List<Users> updateUser(Users User);
 	public Users updateUser(Users User);
 
 	public Users getUserByEmailId(String emailId);
+
+	public List<Users> getAllUser();
 
 
 }

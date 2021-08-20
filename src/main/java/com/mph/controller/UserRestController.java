@@ -35,17 +35,20 @@ public class UserRestController {
 	}
 	
 	@PutMapping("/updateUser")
+	//public ResponseEntity<List<Users>> updateUser(@RequestBody Users user) {
 	public ResponseEntity<Users> updateUser(@RequestBody Users user) {
-		
+
+		//List<Users> usr = userService.updateUser(user);
 		Users usr = userService.updateUser(user);
 		System.out.println("From Rest update emp : " + usr);
 		
 		if(usr==null) {
 			
 			return new ResponseEntity<Users>(HttpStatus.NO_CONTENT);
+			//return new ResponseEntity<List<Users>>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<Users>(usr,HttpStatus.OK);		
-		
+		//return new ResponseEntity<List<Users>>(usr,HttpStatus.OK);		
+		return new ResponseEntity<Users>(usr,HttpStatus.OK);
 	}
 	
 	@GetMapping("/getUser/{emailId}")

@@ -18,7 +18,7 @@ public class Users {
 	@Column
 	private String password;
 	@Column
-	private int phoneNumber;
+	private String phoneNumber;
 	
 	//@OneToMany(mappedBy="user",cascade = CascadeType.ALL)
 	//private List<Task> task;
@@ -28,7 +28,7 @@ public class Users {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Users(String emailId, String userName, String password, int phoneNumber) {
+	public Users(String emailId, String userName, String password, String phoneNumber) {
 		super();
 		this.emailId = emailId;
 		this.userName = userName;
@@ -55,10 +55,10 @@ public class Users {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 	

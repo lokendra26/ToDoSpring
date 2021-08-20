@@ -54,7 +54,7 @@ public class TaskDaoImpl implements TaskDao {
 
 	@Override
 	public List<Task> deleteTask(int taskNo) {
-		Query query = getSession().createQuery("delete from Employee emp where taskId=:taskNo");
+		Query query = getSession().createQuery("delete from Task task where taskId=:taskNo");
 		query.setParameter("taskNo", taskNo);
 		int noofrows = query.executeUpdate();
 		if(noofrows >0)

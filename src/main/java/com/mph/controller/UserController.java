@@ -1,5 +1,6 @@
 package com.mph.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class UserController {
 	public ModelAndView signup(@RequestParam("txtname") String name,
 			@RequestParam("txtemail") String email,
 			@RequestParam("txtpwd") String password,
-			@RequestParam("txtphn") int phonenum)
+			@RequestParam("txtphn") String phonenum)
 	{
 		System.out.println(name + "  " + email +" "+password+" "+phonenum);
 		user = new Users();
@@ -52,13 +53,57 @@ public class UserController {
 		return new ModelAndView("login");
 		
 	}
+	public ModelAndView allUsers()
+	{
+		List<Users> userlist = userService.getAllUser();
+		//Users user = userService.getUser(user);
+		ModelAndView mv = new ModelAndView("home");
+		return mv.addObject("elist", userlist);	
+		
+	}
+	@RequestMapping(value = "/home",method = RequestMethod.POST)
+	public ModelAndView afterSignin(@RequestParam("txtemail") String email,@RequestParam("txtpassword") String password )
+	{
+		user = new Users();
+		
+		user.setEmailId(email);
+		user.setPassword(password);
+		List<Users> users = userService.getAllUser();
+		if(users==null) {
+			
+			ModelAndView mv = new ModelAndView("login");
+			return mv.addObject("NOTIFICATION", "Invalid Login / Password ");	
+		}else {
+		
+			//return allUsers();
+		return getUser(user);
+		}
+	}
 	
-	@RequestMapping(value="/update",method = RequestMethod.GET)
+	private ModelAndView getUser(Users user) {
+		List<Users> userList = new ArrayList<Users>();
+		Users users = userService.getUser(user);
+		userList.add(users);
+		ModelAndView mv = new ModelAndView("home");
+		return mv.addObject("elist", userList);	
+		
+	}
+
+	@RequestMapping(value="/edit",method = RequestMethod.GET)
+	public ModelAndView edit(Users user)
+	{
+		return new ModelAndView("edit");		
+	}
+	
+	@RequestMapping(value="/updateuser",method = RequestMethod.GET)
 	public ModelAndView update(@ModelAttribute Users user)
 	{
+		List<Users> userList = new ArrayList<>();
+		//List<Users> usr = userService.updateUser(user);
 		Users usr = userService.updateUser(user);
+		userList.add(usr);
 		ModelAndView mv=new ModelAndView("home");
-		return mv.addObject("elist",usr);
+		return mv.addObject("elist",userList);
 	}
 		
 }

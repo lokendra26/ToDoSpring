@@ -24,7 +24,6 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void createUser(Users user) {
 		userDao.createUser(user);
-		
 	}
 
 	@Override
@@ -33,7 +32,11 @@ public class UserServiceImpl implements UserService{
 		return userDao.getUser(user);
 	}
 
-	@Override
+	/*@Override
+	public List<Users> updateUser(Users user) {
+		
+		return userDao.updateUser(user);
+	}*/
 	public Users updateUser(Users user) {
 		
 		return userDao.updateUser(user);
@@ -43,6 +46,11 @@ public class UserServiceImpl implements UserService{
 	public Users getUserByEmailId(String emailId) {
 		
 		return userDao.getUserByEmailId(emailId);
+	}
+
+	@Override
+	public List<Users> getAllUser() {
+		return userDao.getAllUser();
 	}
 
 }
