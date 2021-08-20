@@ -77,7 +77,7 @@ public class UserRestController {
 		return new ResponseEntity<Users>(usr,HttpStatus.OK);
 	}
 	
-	@GetMapping("/getUser/{emailId}.")
+	@GetMapping("/getUser/{emailId}")
 	public ResponseEntity<Users> getAUser(@PathVariable("emailId") String emailId) {
 		
 		//logger.info("GETTING REQUEST FROM USER TO LOGIN");
