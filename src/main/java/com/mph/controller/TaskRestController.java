@@ -45,7 +45,7 @@ public class TaskRestController {
 		//System.out.println("Log4 j configuration is SUCCESSFUL");
 		
 		List<Task> taskList = taskService.getAllTasks();
-		System.out.println("From Rest allemp : " + taskList);
+		System.out.println("From Rest allTask : " + taskList);
 		
 		if(taskList.isEmpty()) {
 			
@@ -65,7 +65,7 @@ public class TaskRestController {
 	public ResponseEntity<List<Task>> updateTask(@RequestBody Task task) {
 		
 		List<Task> taskList = taskService.updateTask(task);
-		System.out.println("From Rest update emp : " + taskList);
+		System.out.println("From Rest update Task : " + taskList);
 		
 		if(taskList.isEmpty()) {
 			
