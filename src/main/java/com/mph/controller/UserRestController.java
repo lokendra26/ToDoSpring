@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.mph.entity.Task;
 import com.mph.entity.Users;
 import com.mph.service.UserService;
 
@@ -28,6 +30,30 @@ public class UserRestController {
 	
 	//private static final Logger logger = Logger.getLogger(UserRestController.class);
 
+	@GetMapping("/allUsers")
+	public ResponseEntity<List<Users>> allUsers() {
+		
+		//logger.info("GETTING REQUEST FROM CLIENT TO SHOW THE LIST OF UsersS");
+		//System.out.println(logger.getName()+ "  " + logger.getLevel());
+		
+		//System.out.println(logger.getMessageFactory());
+		
+		//PropertyConfigurator.configure(UsersRestController.class.getClassLoader().getResource("log4j.properties"));
+		//PropertyConfigurator.configure("log4j.properties");
+		
+		//System.out.println("Log4 j configuration is SUCCESSFUL");
+		
+		List<Users> userList = userService.getAllUser();
+		System.out.println("From Rest allUser : " + userList);
+		
+		if(userList.isEmpty()) {
+			
+			return new ResponseEntity<List<Users>>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<Users>>(userList,HttpStatus.OK);		
+		
+	}
+	
 	@PostMapping("/createUser")
 	public Users createUser(@RequestBody Users user) {
 		userService.createUser(user);
@@ -51,7 +77,7 @@ public class UserRestController {
 		return new ResponseEntity<Users>(usr,HttpStatus.OK);
 	}
 	
-	@GetMapping("/getUser/{emailId}")
+	@GetMapping("/getUser/{emailId}.")
 	public ResponseEntity<Users> getAUser(@PathVariable("emailId") String emailId) {
 		
 		//logger.info("GETTING REQUEST FROM USER TO LOGIN");
@@ -63,7 +89,7 @@ public class UserRestController {
 		//PropertyConfigurator.configure("log4j.properties");
 		
 		//System.out.println("Log4 j configuration is SUCCESSFUL");
-		
+		System.out.println("emailId: "+emailId );
 		Users user =userService.getUserByEmailId(emailId);
 		System.out.println("From Rest getEmp : " + user);
 		if(user == null) {
