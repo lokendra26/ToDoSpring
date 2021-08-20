@@ -68,7 +68,8 @@ public class UserController {
 		
 		user.setEmailId(email);
 		user.setPassword(password);
-		List<Users> users = userService.getAllUser();
+		//List<Users> users = userService.getAllUser();
+		Users users = userService.getUser(user);
 		if(users==null) {
 			
 			ModelAndView mv = new ModelAndView("login");

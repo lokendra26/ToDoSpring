@@ -1,5 +1,7 @@
 package com.mph.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,23 +26,24 @@ public class TaskController {
 	Task task;
 	Users user;
 	
-	@RequestMapping(value = "/hometask",method = RequestMethod.POST)
+	/*@RequestMapping(value = "/hometask",method = RequestMethod.POST)
 	public ModelAndView afterSignin(@RequestParam("txtemail") String email,@RequestParam("txtpassword") String password )
 	{
 		user = new Users();
 		
 		user.setEmailId(email);
 		user.setPassword(password);
-		//Employee emp = employeeService.getEmployee(employee);
-		Users users = userService.getUser(user);
+		
+		//Users users = userService.getUser(user);
+		List<Users> users = userService.getAllUser();
 		if(users==null) {
 			
 			ModelAndView mv = new ModelAndView("login");
-			return mv.addObject("NOTIFICATION", "Employee NOT Found :( ");	
+			return mv.addObject("NOTIFICATION", "Invalid Login ID / password..!!  ");	
 		}else {
 		
 		return null;
 		}
-	}
+	}*/
 	
 }
