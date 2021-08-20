@@ -41,7 +41,7 @@ public class UserDaoImpl implements UserDao {
 	public Users getUser(Users user) {
 		Criteria c = getSession().createCriteria(Users.class);
 
-		c.add(Restrictions.eq("email", user.getEmailId()));
+		//c.add(Restrictions.eq("email", user.getEmailId()));
 
 		c.add(Restrictions.eq("emailId", user.getEmailId()));
 		
