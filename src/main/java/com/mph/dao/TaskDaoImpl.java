@@ -8,10 +8,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 
 import com.mph.entity.Task;
 
+@Repository
 public class TaskDaoImpl implements TaskDao {
 
 	@Autowired
@@ -41,6 +43,7 @@ public class TaskDaoImpl implements TaskDao {
 	public Task getTask(Task task) {
 		Criteria c = getSession().createCriteria(Task.class);
 		//c.add(Restrictions.eq("email", task.getEmail()));
+		 c.add(Restrictions.eq("
 		Task em = (Task)c.uniqueResult();
 		System.out.println("Task Retrieved : " + em);
 		return em;
@@ -49,7 +52,24 @@ public class TaskDaoImpl implements TaskDao {
 
 	@Override
 	public List<Task> updateTask(Task task) {
-		return null;
+		Query query = getSession().createQuery("update Task task set taskName=:taskName,taskDate=:taskDate,taskTime=:taskTime,taskPriority=:taskPriority,"
+				+ "taskCategory=:taskCategory,taskStatus=:taskStatus,taskDescription=:taskDescription,taskRemainder=:taskRemainder where taskId=:taskId");
+		query.setParameter("taskName", task.getTaskName());
+		query.setParameter("taskDate", task.getTaskDate());
+		query.setParameter("taskTime", task.getTaskTime());
+		query.setParameter("taskPriority", task.getTaskPriority());
+		query.setParameter("taskCategory", task.getTaskCategory());
+		query.setParameter("taskStatus", task.getTaskStatus());
+		query.setParameter("taskDescription", task.getTaskDescription());
+		query.setParameter("taskRemainder", task.getTaskRemainder());
+		query.setParameter("taskId", task.getTaskId());
+		int noofrows = query.executeUpdate();
+		if(noofrows >0)
+		{
+			System.out.println("Updated " + noofrows + " rows");
+		}
+		
+		return getAllTasks();
 	}
 
 	@Override
@@ -67,8 +87,12 @@ public class TaskDaoImpl implements TaskDao {
 
 	@Override
 	public Task getTaskById(int taskId) {
-		// TODO Auto-generated method stub
-		return null;
+		 Criteria c = getSession().createCriteria (Task.class);
+        c.add(Restrictions.eq("taskId",taskId));
+        Task e= (Task)c.uniqueResult(); 
+        System.out.println("Task Retrieved" + e);
+        return e;
+        
 	}
 
 	

@@ -26,7 +26,7 @@ public class TaskController {
 	Task task;
 	Users user;
 	
-	/*@RequestMapping(value = "/hometask",method = RequestMethod.POST)
+	@RequestMapping(value = "/hometask",method = RequestMethod.POST)
 	public ModelAndView afterSignin(@RequestParam("txtemail") String email,@RequestParam("txtpassword") String password )
 	{
 		user = new Users();
@@ -42,8 +42,14 @@ public class TaskController {
 			return mv.addObject("NOTIFICATION", "Invalid Login ID / password..!!  ");	
 		}else {
 		
-		return null;
+		return allTask();
 		}
-	}*/
+	}
+
+	private ModelAndView allTask() {
+		List<Task> taskList = taskService.getAllTasks();
+		ModelAndView mv = new ModelAndView("home");
+		return mv.addObject("elist", taskList);	
+	}
 	
 }
