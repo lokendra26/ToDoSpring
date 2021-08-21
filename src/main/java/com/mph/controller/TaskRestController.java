@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mph.entity.Task;
+import com.mph.entity.Users;
 import com.mph.service.TaskService;
 
 @RestController
@@ -46,6 +47,47 @@ public class TaskRestController {
 		
 		List<Task> taskList = taskService.getAllTasks();
 		System.out.println("From Rest allTask : " + taskList);
+		
+		if(taskList.isEmpty()) {
+			
+			return new ResponseEntity<List<Task>>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<Task>>(taskList,HttpStatus.OK);		
+		
+	}
+	
+	@GetMapping("/allTaskOfAUser")
+	public ResponseEntity<List<Task>> allTaskOfAUser(@RequestBody Users user) {
+		
+		//logger.info("GETTING REQUEST FROM CLIENT TO SHOW THE LIST OF TaskS");
+		//System.out.println(logger.getName()+ "  " + logger.getLevel());
+		
+		//System.out.println(logger.getMessageFactory());
+		
+		//PropertyConfigurator.configure(TaskRestController.class.getClassLoader().getResource("log4j.properties"));
+		//PropertyConfigurator.configure("log4j.properties");
+		
+		//System.out.println("Log4 j configuration is SUCCESSFUL");
+		
+		
+		List<Task> taskList = taskService.getAllTasks();
+		//List<Task> taskList = taskService.getAllTasksOfAUser(user);
+		System.out.println("From Rest allTaskOfAUser : " + taskList);
+		
+		if(taskList.isEmpty()) {
+			
+			return new ResponseEntity<List<Task>>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<Task>>(taskList,HttpStatus.OK);		
+		
+	}
+	
+	@GetMapping("/allTaskByPriority")
+	public ResponseEntity<List<Task>> allTaskByPriority(@RequestBody Users user) {
+		
+		List<Task> taskList = taskService.getAllTasks();
+		//List<Task> taskList = taskService.sortTaskByPriority();
+		System.out.println("From Rest allTaskOfAUser : " + taskList);
 		
 		if(taskList.isEmpty()) {
 			
@@ -102,4 +144,18 @@ public class TaskRestController {
 		
 	}
 	
+	@GetMapping("/getTaskByName/{taskName}/")
+	public ResponseEntity<List<Task>> getTaskByName(@PathVariable("taskName") String taskName) {
+		
+		List<Task> taskList = taskService.getAllTasks();
+		//List<Task> taskList = taskService.getTaskByName(taskName);
+		System.out.println("From Rest allTask : " + taskList);
+		
+		if(taskList.isEmpty()) {
+			
+			return new ResponseEntity<List<Task>>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<Task>>(taskList,HttpStatus.OK);				
+	}
+			
 }
