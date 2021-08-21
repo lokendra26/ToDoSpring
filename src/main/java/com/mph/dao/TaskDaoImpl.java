@@ -1,5 +1,6 @@
 package com.mph.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 
 import com.mph.entity.Task;
+import com.mph.entity.Users;
 
 @Repository
 public class TaskDaoImpl implements TaskDao {
@@ -39,16 +41,18 @@ public class TaskDaoImpl implements TaskDao {
 		
 	}
 
-	/*@Override
-	public Task getTask(Task task) {
+	@Override
+	public List<Task> getTaskByName(Task task) {
+		List<Task> taskList = new ArrayList<>();
 		Criteria c = getSession().createCriteria(Task.class);
 		//c.add(Restrictions.eq("email", task.getEmail()));
-		 c.add(Restrictions.eq("
-		Task em = (Task)c.uniqueResult();
-		System.out.println("Task Retrieved : " + em);
-		return em;
+		c.add(Restrictions.eq("taskName",task.getTaskName()));
+		Task tl = (Task)c.uniqueResult();
+		taskList.add(tl);
+		System.out.println("Task Retrieved : " + taskList);
+		return taskList;
 		
-	}*/
+	}
 
 	@Override
 	public List<Task> updateTask(Task task) {
@@ -89,10 +93,19 @@ public class TaskDaoImpl implements TaskDao {
 	public Task getTaskById(int taskId) {
 		 Criteria c = getSession().createCriteria (Task.class);
         c.add(Restrictions.eq("taskId",taskId));
-        Task e= (Task)c.uniqueResult(); 
-        System.out.println("Task Retrieved" + e);
-        return e;
+        Task t= (Task)c.uniqueResult(); 
+        System.out.println("Task Retrieved" + t);
+        return t;
         
+	}
+
+	@Override
+	public List<Task> allTaskOfAUser(Task task, Users user) {
+		List<Task> taskList = new ArrayList<>();
+		Query query = getSession().createQuery("from Task t where emailId =: emailId");
+		query.setParameter("emailId", user.getEmailId());
+		taskList = query.list();		
+		return taskList;
 	}
 
 	

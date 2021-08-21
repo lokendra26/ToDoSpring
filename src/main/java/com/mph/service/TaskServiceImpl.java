@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mph.dao.TaskDao;
 import com.mph.entity.Task;
+import com.mph.entity.Users;
 
 @Service
 @Transactional
@@ -56,6 +57,12 @@ public class TaskServiceImpl implements TaskService{
 	public Task getTaskById(int taskId) {
 		
 		return taskDao.getTaskById(taskId);
+	}
+
+	@Override
+	public List<Task> allTaskOfAUser(Task task, Users user) {
+		
+		return taskDao.allTaskOfAUser(task, user);
 	}
 
 }
