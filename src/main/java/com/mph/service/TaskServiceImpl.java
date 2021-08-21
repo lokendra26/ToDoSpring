@@ -60,9 +60,15 @@ public class TaskServiceImpl implements TaskService{
 	}
 
 	@Override
-	public List<Task> allTaskOfAUser(Task task, Users user) {
+	public List<Task> getAllTasksOfAUser( Users user) {
 		
-		return taskDao.allTaskOfAUser(task, user);
+		return taskDao.getAllTasksOfAUser(user);
+	}
+
+	@Override
+	public List<Task> getTaskByName(String task) {
+		
+		return taskDao.getTaskByName(task);
 	}
 
 }

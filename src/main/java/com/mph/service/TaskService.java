@@ -19,6 +19,8 @@ public interface TaskService {
 
 	public Task getTaskById(int taskId);
 	
-	public List<Task> allTaskOfAUser(Task task, Users user);
+	public List<Task> getAllTasksOfAUser( Users user);
+	
+	public List<Task> getTaskByName(String task);
 
 }

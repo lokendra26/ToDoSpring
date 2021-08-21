@@ -42,17 +42,20 @@ public class TaskDaoImpl implements TaskDao {
 	}
 
 	@Override
-	public List<Task> getTaskByName(Task task) {
+	public List<Task> getTaskByName(String task) {
+		Task tsk = new Task();
 		List<Task> taskList = new ArrayList<>();
-		Criteria c = getSession().createCriteria(Task.class);
-		//c.add(Restrictions.eq("email", task.getEmail()));
-		c.add(Restrictions.eq("taskName",task.getTaskName()));
-		Task tl = (Task)c.uniqueResult();
-		taskList.add(tl);
+		Query query = getSession().createQuery("from Task t where taskName like '"+task+"%'");
+		//query.setParameter("task", task);
+		taskList = query.list();
 		System.out.println("Task Retrieved : " + taskList);
 		return taskList;
 		
 	}
+	//Criteria c = getSession().createCriteria(Task.class);
+			//c.add(Restrictions.eq("email", task.getEmail()));
+			//c.add(Restrictions.eq("task",tsk.getTaskLabel()));
+			//Task tl = (Task)c.uniqueResult();
 
 	@Override
 	public List<Task> updateTask(Task task) {
@@ -100,10 +103,10 @@ public class TaskDaoImpl implements TaskDao {
 	}
 
 	@Override
-	public List<Task> allTaskOfAUser(Task task, Users user) {
+	public List<Task> getAllTasksOfAUser(Users user) {
 		List<Task> taskList = new ArrayList<>();
-		Query query = getSession().createQuery("from Task t where emailId =: emailId");
-		query.setParameter("emailId", user.getEmailId());
+		Query query = getSession().createQuery("from Task t where emailId like '"+user.getEmailId()+"'");
+		//query.setParameter("emailId", user.getEmailId());
 		taskList = query.list();		
 		return taskList;
 	}

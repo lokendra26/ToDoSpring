@@ -57,7 +57,8 @@ public class TaskRestController {
 	}
 	
 	@GetMapping("/allTaskOfAUser")
-	public ResponseEntity<List<Task>> allTaskOfAUser(@RequestBody Users user) {
+	public ResponseEntity<List<Task>> allTaskOfAUser(@RequestBody Task task) {
+		
 		
 		//logger.info("GETTING REQUEST FROM CLIENT TO SHOW THE LIST OF TaskS");
 		//System.out.println(logger.getName()+ "  " + logger.getLevel());
@@ -70,8 +71,11 @@ public class TaskRestController {
 		//System.out.println("Log4 j configuration is SUCCESSFUL");
 		
 		
-		List<Task> taskList = taskService.getAllTasks();
-		//List<Task> taskList = taskService.getAllTasksOfAUser(user);
+		//List<Task> taskList = taskService.getAllTasks();
+		Users user = task.getUser();
+		System.out.println("User "+user);
+		List<Task> taskList = taskService.getAllTasksOfAUser(user);
+		
 		System.out.println("From Rest allTaskOfAUser : " + taskList);
 		
 		if(taskList.isEmpty()) {
@@ -147,8 +151,8 @@ public class TaskRestController {
 	@GetMapping("/getTaskByName/{taskName}/")
 	public ResponseEntity<List<Task>> getTaskByName(@PathVariable("taskName") String taskName) {
 		
-		List<Task> taskList = taskService.getAllTasks();
-		//List<Task> taskList = taskService.getTaskByName(taskName);
+		//List<Task> taskList = taskService.getAllTasks();
+		List<Task> taskList = taskService.getTaskByName(taskName);
 		System.out.println("From Rest allTask : " + taskList);
 		
 		if(taskList.isEmpty()) {
