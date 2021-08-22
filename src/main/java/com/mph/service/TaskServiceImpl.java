@@ -48,9 +48,9 @@ public class TaskServiceImpl implements TaskService{
 	}
 
 	@Override
-	public List<Task> deleteTask(int taskId) {
+	public List<Task> deleteTask(int taskId,Users user) {
 		
-		return taskDao.deleteTask(taskId);
+		return taskDao.deleteTask(taskId,user);
 	}
 
 	@Override

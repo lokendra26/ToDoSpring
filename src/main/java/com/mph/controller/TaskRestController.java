@@ -122,9 +122,9 @@ public class TaskRestController {
 	}
 	
 	@DeleteMapping("/deleteTask/{taskId}")
-	public ResponseEntity<List<Task>> deleteTask(@PathVariable("taskId") int taskId) {
+	public ResponseEntity<List<Task>> deleteTask(@PathVariable("taskId") int taskId,@RequestBody Users user) {
 		
-		List<Task> taskList = taskService.deleteTask(taskId);
+		List<Task> taskList = taskService.deleteTask(taskId,user);
 		System.out.println("From Rest update task : " + taskList);
 		
 		if(taskList.isEmpty()) {

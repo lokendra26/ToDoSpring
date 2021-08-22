@@ -45,7 +45,7 @@ public class TaskDaoImpl implements TaskDao {
 	public List<Task> getTaskByName(String task,Users user) {
 		
 		List<Task> taskList = new ArrayList<>();
-		Query query = getSession().createQuery("from Task t where taskName like '"+task+"%' and emailId like '"+user.getEmailId()+"'");
+		Query query = getSession().createQuery("from Task t where taskName like '%"+task+"%' and emailId like '"+user.getEmailId()+"'");
 		//query.setParameter("task", task);
 		taskList = query.list();
 		System.out.println("Task Retrieved : " + taskList);
@@ -75,12 +75,12 @@ public class TaskDaoImpl implements TaskDao {
 		{
 			System.out.println("Updated " + noofrows + " rows");
 		}
-		
-		return getAllTasks();
+		Users user =task.getUser();
+		return getAllTasksOfAUser(user);
 	}
 
 	@Override
-	public List<Task> deleteTask(int taskNo) {
+	public List<Task> deleteTask(int taskNo,Users user) {
 		Query query = getSession().createQuery("delete from Task task where taskId=:taskNo");
 		query.setParameter("taskNo", taskNo);
 		int noofrows = query.executeUpdate();
@@ -89,7 +89,7 @@ public class TaskDaoImpl implements TaskDao {
 			System.out.println("Deleted " + noofrows + " rows");
 		}
 		
-		return getAllTasks();
+		return getAllTasksOfAUser(user);
 	}
 
 	@Override
