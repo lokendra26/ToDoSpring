@@ -11,7 +11,7 @@ public interface TaskDao {
 
 	public List<Task> getAllTasks();
 
-	public List<Task> getTaskByName(String task);
+	public List<Task> getTaskByName(String task,Users user);
 
 	public List<Task> updateTask(Task task);
 
@@ -20,5 +20,7 @@ public interface TaskDao {
 	public Task getTaskById(int taskId);
 	
 	public List<Task> getAllTasksOfAUser( Users user);
+
+	public List<Task> sortTaskByPriority(Users user);
 
 }

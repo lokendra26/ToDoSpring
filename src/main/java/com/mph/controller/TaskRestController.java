@@ -57,7 +57,7 @@ public class TaskRestController {
 	}
 	
 	@GetMapping("/allTaskOfAUser")
-	public ResponseEntity<List<Task>> allTaskOfAUser(@RequestBody Task task) {
+	public ResponseEntity<List<Task>> allTaskOfAUser(@RequestBody Users user) {
 		
 		
 		//logger.info("GETTING REQUEST FROM CLIENT TO SHOW THE LIST OF TaskS");
@@ -72,7 +72,7 @@ public class TaskRestController {
 		
 		
 		//List<Task> taskList = taskService.getAllTasks();
-		Users user = task.getUser();
+		//Users user = task.getUser();
 		System.out.println("User "+user);
 		List<Task> taskList = taskService.getAllTasksOfAUser(user);
 		
@@ -89,9 +89,9 @@ public class TaskRestController {
 	@GetMapping("/allTaskByPriority")
 	public ResponseEntity<List<Task>> allTaskByPriority(@RequestBody Users user) {
 		
-		List<Task> taskList = taskService.getAllTasks();
-		//List<Task> taskList = taskService.sortTaskByPriority();
-		System.out.println("From Rest allTaskOfAUser : " + taskList);
+		//List<Task> taskList = taskService.getAllTasks();
+		List<Task> taskList = taskService.sortTaskByPriority(user);
+		System.out.println("From Rest allTaskByPriority : " + taskList);
 		
 		if(taskList.isEmpty()) {
 			
@@ -149,11 +149,11 @@ public class TaskRestController {
 	}
 	
 	@GetMapping("/getTaskByName/{taskName}/")
-	public ResponseEntity<List<Task>> getTaskByName(@PathVariable("taskName") String taskName) {
+	public ResponseEntity<List<Task>> getTaskByName(@PathVariable("taskName") String taskName,@RequestBody Users user) {
 		
 		//List<Task> taskList = taskService.getAllTasks();
-		List<Task> taskList = taskService.getTaskByName(taskName);
-		System.out.println("From Rest allTask : " + taskList);
+		List<Task> taskList = taskService.getTaskByName(taskName,user);
+		System.out.println("From Rest allTaskByName : " + taskList);
 		
 		if(taskList.isEmpty()) {
 			

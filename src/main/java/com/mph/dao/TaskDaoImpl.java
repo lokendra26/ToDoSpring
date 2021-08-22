@@ -42,10 +42,10 @@ public class TaskDaoImpl implements TaskDao {
 	}
 
 	@Override
-	public List<Task> getTaskByName(String task) {
-		Task tsk = new Task();
+	public List<Task> getTaskByName(String task,Users user) {
+		
 		List<Task> taskList = new ArrayList<>();
-		Query query = getSession().createQuery("from Task t where taskName like '"+task+"%'");
+		Query query = getSession().createQuery("from Task t where taskName like '"+task+"%' and emailId like '"+user.getEmailId()+"'");
 		//query.setParameter("task", task);
 		taskList = query.list();
 		System.out.println("Task Retrieved : " + taskList);
@@ -107,6 +107,14 @@ public class TaskDaoImpl implements TaskDao {
 		List<Task> taskList = new ArrayList<>();
 		Query query = getSession().createQuery("from Task t where emailId like '"+user.getEmailId()+"'");
 		//query.setParameter("emailId", user.getEmailId());
+		taskList = query.list();		
+		return taskList;
+	}
+
+	@Override
+	public List<Task> sortTaskByPriority(Users user) {
+		List<Task> taskList = new ArrayList<>();
+		Query query = getSession().createQuery("from Task t where emailId like '"+user.getEmailId()+"' order by taskPriority");
 		taskList = query.list();		
 		return taskList;
 	}

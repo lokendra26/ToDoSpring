@@ -21,6 +21,8 @@ public interface TaskService {
 	
 	public List<Task> getAllTasksOfAUser( Users user);
 	
-	public List<Task> getTaskByName(String task);
+	public List<Task> getTaskByName(String task,Users user);
+	
+	public List<Task> sortTaskByPriority(Users user);
 
 }
