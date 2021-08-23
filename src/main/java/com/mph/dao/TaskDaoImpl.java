@@ -71,6 +71,9 @@ public class TaskDaoImpl implements TaskDao {
 		query.setParameter("taskRemainder", task.getTaskRemainder());
 		query.setParameter("taskId", task.getTaskId());
 		int noofrows = query.executeUpdate();
+		Query queryPriority = getSession().createQuery("update Task task set taskPriority=101 where taskStatus like 'Complete'");
+		//queryPriority.setParameter("taskPriority", task.getTaskPriority());
+		int noofrowsPri = queryPriority.executeUpdate();
 		if(noofrows >0)
 		{
 			System.out.println("Updated " + noofrows + " rows");
