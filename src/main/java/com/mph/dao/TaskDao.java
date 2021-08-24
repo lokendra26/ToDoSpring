@@ -11,11 +11,11 @@ public interface TaskDao {
 
 	public List<Task> getAllTasks();
 
-	public List<Task> getTaskByName(String task,Users user);
+	public List<Task> getTaskByName(String task,Users user) throws Exception;
 
 	public List<Task> updateTask(Task task);
 
-	public List<Task> deleteTask(int taskId,Users user);
+	public List<Task> deleteTask(int taskId,Users user) throws Exception;
 
 	public Task getTaskById(int taskId);
 	

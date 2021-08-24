@@ -48,7 +48,7 @@ public class TaskServiceImpl implements TaskService{
 	}
 
 	@Override
-	public List<Task> deleteTask(int taskId,Users user) {
+	public List<Task> deleteTask(int taskId,Users user) throws Exception {
 		
 		return taskDao.deleteTask(taskId,user);
 	}
@@ -66,7 +66,7 @@ public class TaskServiceImpl implements TaskService{
 	}
 
 	@Override
-	public List<Task> getTaskByName(String task,Users user) {
+	public List<Task> getTaskByName(String task,Users user) throws Exception {
 		
 		return taskDao.getTaskByName(task,user);
 	}

@@ -122,7 +122,7 @@ public class TaskRestController {
 	}
 	
 	@DeleteMapping("/deleteTask/{taskId}")
-	public ResponseEntity<List<Task>> deleteTask(@PathVariable("taskId") int taskId,@RequestBody Users user) {
+	public ResponseEntity<List<Task>> deleteTask(@PathVariable("taskId") int taskId,@RequestBody Users user) throws Exception {
 		
 		List<Task> taskList = taskService.deleteTask(taskId,user);
 		System.out.println("From Rest update task : " + taskList);
@@ -149,7 +149,7 @@ public class TaskRestController {
 	}
 	
 	@GetMapping("/getTaskByName/{taskName}/")
-	public ResponseEntity<List<Task>> getTaskByName(@PathVariable("taskName") String taskName,@RequestBody Users user) {
+	public ResponseEntity<List<Task>> getTaskByName(@PathVariable("taskName") String taskName,@RequestBody Users user) throws Exception {
 		
 		//List<Task> taskList = taskService.getAllTasks();
 		List<Task> taskList = taskService.getTaskByName(taskName,user);
