@@ -1,11 +1,20 @@
 package com.mph.entity;
 
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public class TaskDetails {
 	
+	@Column
 	private String taskCategory;
+	@Column
 	private String taskStatus;
+	@Column
 	private String taskRemainder;
+	@Column
 	private String taskDescription;
+	@Column
 	private String taskLabel;
 	public TaskDetails() {
 		super();
