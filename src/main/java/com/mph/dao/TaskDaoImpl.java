@@ -42,6 +42,7 @@ public class TaskDaoImpl implements TaskDao {
 
 	}
 
+	//To search and retrieve the task by its name
 	@Override
 	public List<Task> getTaskByName(String task, Users user) throws Exception {
 
@@ -62,6 +63,7 @@ public class TaskDaoImpl implements TaskDao {
 		return taskList;
 	}
 
+	//Used to update the existing task 
 	@Override
 	public List<Task> updateTask(Task task) {
 		Query query = getSession().createQuery(
@@ -88,7 +90,7 @@ public class TaskDaoImpl implements TaskDao {
 		return getAllTasksOfAUser(user);
 	}
 
-	
+	//To delete the existing task identified by task ID in Database 
 	@Override
 	public List<Task> deleteTask(int taskNo, Users user) throws Exception{
 		Query query = getSession().createQuery("delete from Task task where taskId=:taskNo");
@@ -108,7 +110,7 @@ public class TaskDaoImpl implements TaskDao {
 		return getAllTasksOfAUser(user);
 	}
 
-	
+	//To search a task by its ID 
 	@Override
 	public Task getTaskById(int taskId) {
 		Criteria c = getSession().createCriteria(Task.class);
@@ -119,7 +121,7 @@ public class TaskDaoImpl implements TaskDao {
 
 	}
 
-	
+	//To retrieve all the tasks respective to a specific mail ID 
 	@Override
 	public List<Task> getAllTasksOfAUser(Users user) {
 		List<Task> taskList = new ArrayList<>();
@@ -129,6 +131,7 @@ public class TaskDaoImpl implements TaskDao {
 		return taskList;
 	}
 
+	//Sort the task by the user's priority 
 	@Override
 	public List<Task> sortTaskByPriority(Users user) {
 		List<Task> taskList = new ArrayList<>();

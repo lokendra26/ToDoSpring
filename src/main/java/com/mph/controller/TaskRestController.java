@@ -2,6 +2,8 @@ package com.mph.controller;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 //import org.apache.log4j.Logger;
 //import org.apache.log4j.PropertyConfigurator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,20 +32,20 @@ public class TaskRestController {
 	@Autowired
 	TaskService taskService;
 	
-	//private static final Logger logger = Logger.getLogger(TaskRestController.class);
+	private static final Logger logger = Logger.getLogger(TaskRestController.class);
 	
 	@GetMapping("/allTask")
 	public ResponseEntity<List<Task>> allTask() {
 		
-		//logger.info("GETTING REQUEST FROM CLIENT TO SHOW THE LIST OF TaskS");
-		//System.out.println(logger.getName()+ "  " + logger.getLevel());
+		logger.info("GETTING REQUEST FROM CLIENT TO SHOW THE LIST OF Tasks");
+		System.out.println(logger.getName()+ "  " + logger.getLevel());
 		
 		//System.out.println(logger.getMessageFactory());
 		
-		//PropertyConfigurator.configure(TaskRestController.class.getClassLoader().getResource("log4j.properties"));
-		//PropertyConfigurator.configure("log4j.properties");
+		PropertyConfigurator.configure(TaskRestController.class.getClassLoader().getResource("log4j.properties"));
+		PropertyConfigurator.configure("log4j.properties");
 		
-		//System.out.println("Log4 j configuration is SUCCESSFUL");
+		System.out.println("Log4 j configuration is SUCCESSFUL");
 		
 		List<Task> taskList = taskService.getAllTasks();
 		System.out.println("From Rest allTask : " + taskList);
@@ -60,15 +62,15 @@ public class TaskRestController {
 	public ResponseEntity<List<Task>> allTaskOfAUser(@RequestBody Users user) {
 		
 		
-		//logger.info("GETTING REQUEST FROM CLIENT TO SHOW THE LIST OF TaskS");
-		//System.out.println(logger.getName()+ "  " + logger.getLevel());
+		logger.info("GETTING REQUEST FROM CLIENT TO SHOW THE LIST OF TaskS");
+		System.out.println(logger.getName()+ "  " + logger.getLevel());
 		
 		//System.out.println(logger.getMessageFactory());
 		
-		//PropertyConfigurator.configure(TaskRestController.class.getClassLoader().getResource("log4j.properties"));
-		//PropertyConfigurator.configure("log4j.properties");
+		PropertyConfigurator.configure(TaskRestController.class.getClassLoader().getResource("log4j.properties"));
+		PropertyConfigurator.configure("log4j.properties");
 		
-		//System.out.println("Log4 j configuration is SUCCESSFUL");
+		System.out.println("Log4 j configuration is SUCCESSFUL");
 		
 		
 		//List<Task> taskList = taskService.getAllTasks();
