@@ -63,6 +63,17 @@ public class UserRestController {
 		return user;
 	}
 	
+	@GetMapping("/getUser")
+	public ResponseEntity<Users> getUser(@RequestBody Users user) {
+		Users usr = userService.getUser(user);
+		System.out.println("From Rest getUser" +usr);
+		if(usr==null) {
+			return new ResponseEntity<Users>(HttpStatus.NO_CONTENT);
+			//return new ResponseEntity<List<Users>>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<Users>(usr,HttpStatus.OK); 
+	}
+	
 	@PutMapping("/updateUser")
 	//public ResponseEntity<List<Users>> updateUser(@RequestBody Users user) {
 	public ResponseEntity<Users> updateUser(@RequestBody Users user) {
@@ -80,7 +91,7 @@ public class UserRestController {
 		return new ResponseEntity<Users>(usr,HttpStatus.OK);
 	}
 	
-	@GetMapping("/getUser/{emailId}/")
+	@GetMapping("/getAUser/{emailId}/")
 	public ResponseEntity<Users> getAUser(@PathVariable("emailId") String emailId) {
 		
 		logger.info("GETTING REQUEST FROM USER TO LOGIN");
