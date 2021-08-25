@@ -1,6 +1,9 @@
 package com.mph.controller;
 
 import java.util.List;
+
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 //import org.apache.log4j.Logger;
 //import org.apache.log4j.PropertyConfigurator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,20 +31,20 @@ public class UserRestController {
 	@Autowired
 	UserService userService;
 	
-	//private static final Logger logger = Logger.getLogger(UserRestController.class);
+	private static final Logger logger = Logger.getLogger(UserRestController.class);
 
 	@GetMapping("/allUsers")
 	public ResponseEntity<List<Users>> allUsers() {
 		
-		//logger.info("GETTING REQUEST FROM CLIENT TO SHOW THE LIST OF UsersS");
-		//System.out.println(logger.getName()+ "  " + logger.getLevel());
+		logger.info("GETTING REQUEST FROM CLIENT TO SHOW THE LIST OF UsersS");
+		System.out.println(logger.getName()+ "  " + logger.getLevel());
 		
 		//System.out.println(logger.getMessageFactory());
 		
-		//PropertyConfigurator.configure(UsersRestController.class.getClassLoader().getResource("log4j.properties"));
-		//PropertyConfigurator.configure("log4j.properties");
+		PropertyConfigurator.configure(UserRestController.class.getClassLoader().getResource("log4j.properties"));
+		PropertyConfigurator.configure("log4j.properties");
 		
-		//System.out.println("Log4 j configuration is SUCCESSFUL");
+		System.out.println("Log4 j configuration is SUCCESSFUL");
 		
 		List<Users> userList = userService.getAllUser();
 		System.out.println("From Rest allUser : " + userList);
@@ -80,15 +83,15 @@ public class UserRestController {
 	@GetMapping("/getUser/{emailId}/")
 	public ResponseEntity<Users> getAUser(@PathVariable("emailId") String emailId) {
 		
-		//logger.info("GETTING REQUEST FROM USER TO LOGIN");
-		//System.out.println(logger.getName()+ "  " + logger.getLevel());
+		logger.info("GETTING REQUEST FROM USER TO LOGIN");
+		System.out.println(logger.getName()+ "  " + logger.getLevel());
 		
 		//System.out.println(logger.getMessageFactory());
 		
-		//PropertyConfigurator.configure(EmployeeRestController.class.getClassLoader().getResource("log4j.properties"));
-		//PropertyConfigurator.configure("log4j.properties");
+		PropertyConfigurator.configure(UserRestController.class.getClassLoader().getResource("log4j.properties"));
+	PropertyConfigurator.configure("log4j.properties");
 		
-		//System.out.println("Log4 j configuration is SUCCESSFUL");
+		System.out.println("Log4 j configuration is SUCCESSFUL");
 		System.out.println("emailId: "+emailId );
 		Users user =userService.getUserByEmailId(emailId);
 		System.out.println("From Rest getUser : " + user);
