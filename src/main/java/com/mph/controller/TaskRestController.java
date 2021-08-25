@@ -58,7 +58,7 @@ public class TaskRestController {
 		
 	}
 	
-	@GetMapping("/allTaskOfAUser")
+	@PostMapping("/allTaskOfAUser")
 	public ResponseEntity<List<Task>> allTaskOfAUser(@RequestBody Users user) {
 		
 		

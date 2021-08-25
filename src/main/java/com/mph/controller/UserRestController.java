@@ -63,7 +63,7 @@ public class UserRestController {
 		return user;
 	}
 	
-	@GetMapping("/getUser")
+	@PostMapping("/getUser")
 	public ResponseEntity<Users> getUser(@RequestBody Users user) {
 		Users usr = userService.getUser(user);
 		System.out.println("From Rest getUser" +usr);
