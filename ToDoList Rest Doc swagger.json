@@ -1,0 +1,380 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "ToDoList Rest Doc"
+  },
+  "host": "localhost:8080",
+  "basePath": "/ToDoListRLL",
+  "tags": [
+    {
+      "name": "user",
+      "description": "CRUD operations with user"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/user/allUsers": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Get all User",
+        "operationId": " allUsers",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/user/createUser": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "create a user",
+        "description": "",
+        "operationId": "createUser",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "create a user",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/user/getUser": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "get a user",
+        "description": "",
+        "operationId": "getUser",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "get a user",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/user/getAUser/{emailId}": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "get a user using emailId",
+        "description": "",
+        "operationId": "getAUser",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "emailId",
+            "in": "path",
+            "description": "Task id to get task",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/user/updateUser": {
+      "put": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Update an existing User",
+        "description": "",
+        "operationId": "updateUser",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User that needs to be updated",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "500": {
+            "description": "User not Found"
+          }
+        }
+      }
+    },
+    "/task/allTask": {
+      "get": {
+        "tags": [
+          "task"
+        ],
+        "summary": "Get all Tasks of all users",
+        "operationId": " allTask",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/task/allTaskOfAUser": {
+      "post": {
+        "tags": [
+          "task"
+        ],
+        "summary": "Get all Tasks of a user",
+        "operationId": " allTaskOfAUser",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/task/allTaskByPriority": {
+      "get": {
+        "tags": [
+          "task"
+        ],
+        "summary": "Get all Tasks in priority order",
+        "operationId": " allTaskByPriority",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/task/createTask": {
+      "post": {
+        "tags": [
+          "task"
+        ],
+        "summary": "create a task",
+        "description": "",
+        "operationId": "createTask",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "create a task",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/task/updateTask": {
+      "put": {
+        "tags": [
+          "task"
+        ],
+        "summary": "Update an existing Task",
+        "description": "",
+        "operationId": "updateTask",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Task that needs to be updated",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "500": {
+            "description": "User not Found"
+          }
+        }
+      }
+    },
+    "/task/getTask/{taskId}": {
+      "get": {
+        "tags": [
+          "task"
+        ],
+        "summary": "get a task using taskId",
+        "description": "",
+        "operationId": "getTask",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "Task id to get task",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/task/getTaskByName/{taskName}": {
+      "get": {
+        "tags": [
+          "task"
+        ],
+        "summary": "get a task using taskName",
+        "description": "",
+        "operationId": "getTaskByName",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "taskName",
+            "in": "path",
+            "description": "Task name to get task",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/task/deleteTask/{taskId}": {
+      "delete": {
+        "tags": [
+          "task"
+        ],
+        "summary": "Deletes a task",
+        "description": "",
+        "operationId": "deleteTask",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "Task id to delete",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Role not found"
+          }
+        }
+      }
+    }
+  }
+}
