@@ -3,7 +3,7 @@ package com.mph.dao;
 import java.util.List;
 
 import com.mph.entity.Users;
-
+/*Mahendra*/
 public interface UserDao {
 	
 	public void createUser(Users user);

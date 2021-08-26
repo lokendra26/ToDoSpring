@@ -2,7 +2,7 @@ package com.mph.entity;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
-
+/*Yashwanth*/
 @MappedSuperclass
 public class TaskDetails {
 	

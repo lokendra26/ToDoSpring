@@ -2,13 +2,15 @@ package com.mph.service;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mph.dao.UserDao;
 import com.mph.entity.Users;
-
+/*Lokendra*/
+/*This class is used to call the methods in the Task Dao implementation*/
 @Service
 @Transactional
 public class UserServiceImpl implements UserService{

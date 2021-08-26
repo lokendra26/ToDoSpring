@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mph.entity.Task;
 import com.mph.entity.Users;
 import com.mph.service.TaskService;
-
+/*Lokendra*/
 @RestController
 @RequestMapping(value = "/task")
 @CrossOrigin(origins="http://localhost:4200",methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
@@ -57,7 +57,7 @@ public class TaskRestController {
 		return new ResponseEntity<List<Task>>(taskList,HttpStatus.OK);		
 		
 	}
-	
+	/*To get all tasks irrespective of the Email ID */
 	@PostMapping("/allTaskOfAUser")
 	public ResponseEntity<List<Task>> allTaskOfAUser(@RequestBody Users user) {
 		
@@ -87,7 +87,7 @@ public class TaskRestController {
 		return new ResponseEntity<List<Task>>(taskList,HttpStatus.OK);		
 		
 	}
-	
+	/*To sort the task based on the users priority */
 	@GetMapping("/allTaskByPriority")
 	public ResponseEntity<List<Task>> allTaskByPriority(@RequestBody Users user) {
 		
@@ -102,13 +102,13 @@ public class TaskRestController {
 		return new ResponseEntity<List<Task>>(taskList,HttpStatus.OK);		
 		
 	}
-	
+	/*To create the task using users EmailID */
 	@PostMapping("/createTask")
 	public Task createTask(@RequestBody Task task) {
 		taskService.createTask(task);
 		return task;
 	}
-	
+	/*To update the task Details*/
 	@PutMapping("/updateTask")
 	public ResponseEntity<List<Task>> updateTask(@RequestBody Task task) {
 		
@@ -122,7 +122,7 @@ public class TaskRestController {
 		return new ResponseEntity<List<Task>>(taskList,HttpStatus.OK);		
 		
 	}
-	
+	/*To delete the task using users EmailID */
 	@DeleteMapping("/deleteTask/{taskId}")
 	public ResponseEntity<List<Task>> deleteTask(@PathVariable("taskId") int taskId) throws Exception {
 		Task task=taskService.getTaskById(taskId);
@@ -137,7 +137,7 @@ public class TaskRestController {
 		return new ResponseEntity<List<Task>>(taskList,HttpStatus.OK);		
 		
 	}
-	
+	/*To get the task using users taskID */
 	@GetMapping("/getTask/{taskId}")
 	public ResponseEntity<Task> getATask(@PathVariable("taskId") int taskId) {
 		
@@ -150,7 +150,7 @@ public class TaskRestController {
 		
 		
 	}
-	
+	/*To gettask by using users TaskName */
 	@GetMapping("/getTaskByName/{taskName}/")
 	public ResponseEntity<List<Task>> getTaskByName(@PathVariable("taskName") String taskName,@RequestBody Users user) throws Exception {
 		

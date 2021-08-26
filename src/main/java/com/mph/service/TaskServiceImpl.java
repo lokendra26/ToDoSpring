@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mph.dao.TaskDao;
 import com.mph.entity.Task;
 import com.mph.entity.Users;
-
+/*Lokendra*/
+ 
+ /*This class is used to call the methods in the Task Dao implementation*/
 @Service
 @Transactional
 public class TaskServiceImpl implements TaskService{

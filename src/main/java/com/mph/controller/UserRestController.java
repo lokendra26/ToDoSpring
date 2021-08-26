@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mph.entity.Task;
 import com.mph.entity.Users;
 import com.mph.service.UserService;
+/*Lokendra*/
 
 @RestController
 @RequestMapping(value = "/user")
@@ -35,7 +36,7 @@ public class UserRestController {
 	UserService userService;
 	
 	private static final Logger logger = Logger.getLogger(UserRestController.class);
-
+	/*To get all the user details */
 	@GetMapping("/allUsers")
 	public ResponseEntity<List<Users>> allUsers() {
 		
@@ -59,13 +60,13 @@ public class UserRestController {
 		return new ResponseEntity<List<Users>>(userList,HttpStatus.OK);		
 		
 	}
-	
+	/*To create a user  */
 	@PostMapping("/createUser")
 	public Users createUser(@RequestBody Users user) {
 		userService.createUser(user);
 		return user;
 	}
-	
+	/*To get a user   */
 	@PostMapping("/getUser")
 	public ResponseEntity<Users> getUser(@RequestBody Users user) {
 		Users usr = userService.getUser(user);
@@ -76,7 +77,7 @@ public class UserRestController {
 		}
 		return new ResponseEntity<Users>(usr,HttpStatus.OK); 
 	}
-	
+	/*To update the user Details  */
 	@PutMapping("/updateUser")
 	//public ResponseEntity<List<Users>> updateUser(@RequestBody Users user) {
 	public ResponseEntity<Users> updateUser(@RequestBody Users user) {
@@ -93,7 +94,7 @@ public class UserRestController {
 		//return new ResponseEntity<List<Users>>(usr,HttpStatus.OK);		
 		return new ResponseEntity<Users>(usr,HttpStatus.OK);
 	}
-	
+	/*To retrieve user by using User EmailID  */
 	@GetMapping("/getAUser/{emailId}/")
 	public ResponseEntity<Users> getAUser(@PathVariable("emailId") String emailId) {
 		

@@ -3,7 +3,7 @@ package com.mph.service;
 import java.util.List;
 
 import com.mph.entity.Users;
-
+/*Lokendra*/
 public interface UserService {
 
 	public void createUser(Users user);

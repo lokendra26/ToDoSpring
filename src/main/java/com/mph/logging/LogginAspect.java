@@ -18,7 +18,8 @@ import java.util.Arrays;
 import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
-
+/*Mirunalini*/
+/*It is used to store the details of logging and logout of a user*/
 @Aspect
 @Component
 public class LogginAspect{
