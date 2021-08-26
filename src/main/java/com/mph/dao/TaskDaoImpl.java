@@ -25,10 +25,9 @@ public class TaskDaoImpl implements TaskDao {
 		return sessionFactory.getCurrentSession();
 	}
 
-<<<<<<< HEAD
-=======
+
 	// To create a new task
->>>>>>> main
+
 	@Override
 	public void createTask(Task task) {
 		getSession().saveOrUpdate(task);
@@ -47,11 +46,11 @@ public class TaskDaoImpl implements TaskDao {
 
 	//To search and retrieve the task by its name
 	@Override
-<<<<<<< HEAD
-	public List<Task> getTaskByName(String task, Users user) {
-=======
+
+//	public List<Task> getTaskByName(String task, Users user) {
+
 	public List<Task> getTaskByName(String task, Users user) throws Exception {
->>>>>>> main
+
 
 		List<Task> taskList = new ArrayList<>();
 		Query query = getSession().createQuery(
@@ -68,16 +67,16 @@ public class TaskDaoImpl implements TaskDao {
 			tfe.printStackTrace();
 		}
 		return taskList;
-<<<<<<< HEAD
+
 
 	}
 	// Criteria c = getSession().createCriteria(Task.class);
 	// c.add(Restrictions.eq("email", task.getEmail()));
 	// c.add(Restrictions.eq("task",tsk.getTaskLabel()));
 	// Task tl = (Task)c.uniqueResult();
-=======
-	}
->>>>>>> main
+
+//	}
+
 
 	//Used to update the existing task 
 	@Override
@@ -99,7 +98,7 @@ public class TaskDaoImpl implements TaskDao {
 				.createQuery("update Task task set taskPriority=101 where taskStatus like 'Complete'");
 		// queryPriority.setParameter("taskPriority", task.getTaskPriority());
 		int noofrowsPri = queryPriority.executeUpdate();
-<<<<<<< HEAD
+
 		if(noofrows >0)
 		{
 
@@ -109,40 +108,28 @@ public class TaskDaoImpl implements TaskDao {
 		Users user = task.getUser();
 		return getAllTasksOfAUser(user);
 	}
-	
-	@Override
-	public List<Task> deleteTask(int taskNo, Users user) {
-=======
-		if (noofrows > 0) {
-			System.out.println("Updated " + noofrows + " rows");
-		}
-		Users user = task.getUser();
-		return getAllTasksOfAUser(user);
-	}
 
 	//To delete the existing task identified by task ID in Database 
 	@Override
 	public List<Task> deleteTask(int taskNo, Users user) throws Exception{
->>>>>>> main
+
 		Query query = getSession().createQuery("delete from Task task where taskId=:taskNo");
 		query.setParameter("taskNo", taskNo);
 		
 		int noofrows = query.executeUpdate();
-<<<<<<< HEAD
-=======
+
 		try {
->>>>>>> main
+
 		if (noofrows > 0) {
 			System.out.println("Deleted " + noofrows + " rows");
 		}else {
 			throw new TaskNotFoundException();
 		}
-<<<<<<< HEAD
-=======
+
 		}catch(TaskNotFoundException tfe) {
 			tfe.printStackTrace();
 		}
->>>>>>> main
+
 
 		return getAllTasksOfAUser(user);
 	}
@@ -173,16 +160,10 @@ public class TaskDaoImpl implements TaskDao {
 	public List<Task> sortTaskByPriority(Users user) {
 		List<Task> taskList = new ArrayList<>();
 		Query query = getSession()
-<<<<<<< HEAD
+
 				.createQuery("from Task t where emailId like '" + user.getEmailId() + "' order by taskPriority");
 		taskList = query.list();
 		return taskList;
 	}
-=======
-				.createQuery("from Task t where emailId like '" + user.getEmailId() + "' order by taskPriority ");
-		taskList = query.list();
-		return taskList;
-	}
 
->>>>>>> main
 }
