@@ -1,8 +1,9 @@
 package com.mph.controller;
 
 import java.util.List;
-//import org.apache.log4j.Logger;
-//import org.apache.log4j.PropertyConfigurator;
+
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,20 +29,20 @@ public class UserRestController {
 	@Autowired
 	UserService userService;
 	
-	//private static final Logger logger = Logger.getLogger(UserRestController.class);
+	private static final Logger logger = Logger.getLogger(UserRestController.class);
 
 	@GetMapping("/allUsers")
 	public ResponseEntity<List<Users>> allUsers() {
 		
-		//logger.info("GETTING REQUEST FROM CLIENT TO SHOW THE LIST OF UsersS");
-		//System.out.println(logger.getName()+ "  " + logger.getLevel());
+		logger.info("GETTING REQUEST FROM CLIENT TO SHOW THE LIST OF UsersS");
+		System.out.println(logger.getName()+ "  " + logger.getLevel());
 		
 		//System.out.println(logger.getMessageFactory());
 		
-		//PropertyConfigurator.configure(UsersRestController.class.getClassLoader().getResource("log4j.properties"));
-		//PropertyConfigurator.configure("log4j.properties");
+		PropertyConfigurator.configure(UserRestController.class.getClassLoader().getResource("log4j.properties"));
+		PropertyConfigurator.configure("log4j.properties");
 		
-		//System.out.println("Log4 j configuration is SUCCESSFUL");
+		System.out.println("Log4 j configuration is SUCCESSFUL");
 		
 		List<Users> userList = userService.getAllUser();
 		System.out.println("From Rest allUser : " + userList);
@@ -58,6 +59,17 @@ public class UserRestController {
 	public Users createUser(@RequestBody Users user) {
 		userService.createUser(user);
 		return user;
+	}
+	
+	@GetMapping("/getUser")
+	public ResponseEntity<Users> getUser(@RequestBody Users user) {
+		Users usr = userService.getUser(user);
+		System.out.println("From Rest getUser" +usr);
+		if(usr==null) {
+			return new ResponseEntity<Users>(HttpStatus.NO_CONTENT);
+			//return new ResponseEntity<List<Users>>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<Users>(usr,HttpStatus.OK); 
 	}
 	
 	@PutMapping("/updateUser")
@@ -77,18 +89,18 @@ public class UserRestController {
 		return new ResponseEntity<Users>(usr,HttpStatus.OK);
 	}
 	
-	@GetMapping("/getUser/{emailId}/")
+	@GetMapping("/getAUser/{emailId}/")
 	public ResponseEntity<Users> getAUser(@PathVariable("emailId") String emailId) {
 		
-		//logger.info("GETTING REQUEST FROM USER TO LOGIN");
-		//System.out.println(logger.getName()+ "  " + logger.getLevel());
+		logger.info("GETTING REQUEST FROM USER TO LOGIN");
+		System.out.println(logger.getName()+ "  " + logger.getLevel());
 		
 		//System.out.println(logger.getMessageFactory());
 		
-		//PropertyConfigurator.configure(EmployeeRestController.class.getClassLoader().getResource("log4j.properties"));
-		//PropertyConfigurator.configure("log4j.properties");
+		PropertyConfigurator.configure(UserRestController.class.getClassLoader().getResource("log4j.properties"));
+	PropertyConfigurator.configure("log4j.properties");
 		
-		//System.out.println("Log4 j configuration is SUCCESSFUL");
+		System.out.println("Log4 j configuration is SUCCESSFUL");
 		System.out.println("emailId: "+emailId );
 		Users user =userService.getUserByEmailId(emailId);
 		System.out.println("From Rest getUser : " + user);

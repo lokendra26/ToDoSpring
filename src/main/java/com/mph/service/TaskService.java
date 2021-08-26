@@ -15,13 +15,13 @@ public interface TaskService {
 
 	public List<Task> updateTask(Task task);
 
-	public List<Task> deleteTask(int taskId,Users user);
+	public List<Task> deleteTask(int taskId,Users user) throws Exception;
 
 	public Task getTaskById(int taskId);
 	
 	public List<Task> getAllTasksOfAUser( Users user);
 	
-	public List<Task> getTaskByName(String task,Users user);
+	public List<Task> getTaskByName(String task,Users user) throws Exception;
 	
 	public List<Task> sortTaskByPriority(Users user);
 
